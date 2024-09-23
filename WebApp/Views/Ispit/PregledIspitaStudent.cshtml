@@ -1,0 +1,135 @@
+﻿@using WebApp.Models
+@model IEnumerable<RezultatIspita>
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <a href="~/Ispit/PregledIspitaStudent" class="navbar-brand">Pregled ispita</a>
+                <a href="~/Ispit/PrijavaIspita" class="navbar-brand">Prijava ispita</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+
+    <form action="/Ispit/PretragaStudent" method="post">
+        <div class="form-inline">
+            <label for="ispitFil">Pretraga:</label>
+            <select name="ispitFil" class="form-control">
+                <option value="">Ispitni rok</option>
+                <option value="@NazivRoka.januarski">Januarski</option>
+                <option value="@NazivRoka.februarski">Februarski</option>
+                <option value="@NazivRoka.aprilski">Aprilski</option>
+                <option value="@NazivRoka.junski">junski</option>
+                <option value="@NazivRoka.julski">julski</option>
+                <option value="@NazivRoka.avgustovski">Avgustovski</option>
+                <option value="@NazivRoka.septembarski">Septembarski</option>
+                <option value="@NazivRoka.oktobarski">Oktobarski</option>
+            </select>
+
+            <input type="text" name="predmetFil" class="form-control" placeholder="Predmet" />
+            <select name="ocenaFil" class="form-control">
+                <option value="">Ocena</option>
+                <option value="5">Nije polozen</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            
+            <input type="submit" value="Filtriraj" class="btn btn-primary" />
+        </div>
+    </form>
+    <br />
+    <form action="/Ispit/SortiranjeStudent" method="post">
+        <div class="form-inline">
+            <label for="vrstaFiltera">Sortiraj po:</label>
+            <select name="vrstaFiltera" class="form-control">
+                <option value="ispitR">Ispitnom roku</option>
+                <option value="predmet">Predmetu</option>
+                <option value="Oceni">Oceni</option>
+            </select>
+            <select name="vrednostFiltera" class="form-control">
+                <option value="rastuce">Rastuce</option>
+                <option value="opadajuce">Opadajuce</option>
+            </select>
+            <input type="submit" value="Sortiraj" class="btn btn-primary" />
+        </div>
+
+    </form>
+    <br/>
+
+    <br />
+
+    @{
+        if (ViewBag.Message != null)
+        {
+            <h2>@ViewBag.Message</h2>
+        }
+    }
+
+    <table class="table table-striped table-primary">
+        <tr>
+            <th>Naziv predmeta</th>
+            <th>Profesor</th>
+            <th>Vreme odrzavanja</th>
+            <th>Ispitni rok</th>
+            <th>Ocena</th>
+
+        </tr>
+        @{
+            foreach (var ispit in Model)
+            {
+                <tr>
+                    <td>@ispit.Ispit.Predmet</td>
+                    <td>@ispit.Ispit.Profesor</td>
+                    <td>@ispit.Ispit.VremeOdrzavanja</td>
+                    <td>@ispit.Ispit.NazivIspitnogRoka</td>
+                    @{
+
+                        if (ispit.Ocena == 0 && ispit.Ispit.VremeOdrzavanja < DateTime.Now)
+                        {
+                            <td>Nije ocenjen</td>
+                        }
+                        else
+                        {
+                            <td>@ispit.Ocena</td>
+                        }
+                    }
+
+
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+</html>

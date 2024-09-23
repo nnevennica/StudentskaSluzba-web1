@@ -1,0 +1,65 @@
+﻿@using WebApp.Models
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+}
+
+
+<html>
+<head>
+    
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+                @{
+                    if (korisnik != null)
+                    {
+                        if (korisnik.Uloga == UlogaKorisnika.Student)
+                        {
+                            <a href="~/Ispit/PregledIspitaStudent" class="navbar-brand">Pregled ispita</a>
+                            <a href="~/Ispit/PrijavaIspita" class="navbar-brand">Prijava ispita</a>
+                            <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+                        }
+                        else if (korisnik.Uloga == UlogaKorisnika.Profesor)
+                        {
+                            <a href="~/Ispit/PregledIspitaProfesor" class="navbar-brand">Pregled ispita</a>
+                            <a href="~/Ispit/KreiranjeIspita" class="navbar-brand">Kreiraj ispit</a>
+                            <a href="~/Ispit/OcenjivanjeIspita" class="navbar-brand">Oceni ispit</a>
+                            <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+                        }
+                        else
+                        {
+                            <a href="~/Administrator/KreirajStudenta" class="navbar-brand">Kreiraj studenta</a>
+                            <a href="~/Administrator/PregledStudenata" class="navbar-brand">Pregledaj studente</a>
+                            <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="~/Home/Login" class="navbar-brand">Login</a>
+                    }
+
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

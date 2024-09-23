@@ -1,0 +1,95 @@
+﻿@using WebApp.Models
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+    string gornjaGrainica = DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd");
+    string donjaGranica = DateTime.Now.AddYears(-100).ToString("yyyy-MM-dd");
+    Student student = HttpContext.Current.Application["AzuriranjeStudenta"] as Student;
+    
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <a href="~/Administrator/KreirajStudenta" class="navbar-brand">Kreiraj studenta</a>
+                <a href="~/Administrator/PregledStudenata" class="navbar-brand">Pregledaj studente</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-offset-5">
+        @{
+            if (ViewBag.Message != "")
+            {
+                <h2>@ViewBag.Message</h2>
+            }
+        }
+
+        <form action="/Administrator/AzurirajStudenta" method="post">
+
+            <input type="hidden" name="brIndexa" value="@student.BrIndex" />
+            <div class="form-group">
+                <label for="ime">Ime:</label>
+                <input type="text" required placeholder="Ime" value="@student.Ime" class="form-control" name="ime"
+                       oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite Ime')" />
+            </div>
+
+            <div class="form-group">
+                <label for="prezime">Prezime:</label>
+                <input type="text" required placeholder="Prezime" value="@student.Prezime" class="form-control" name="prezime"
+                       oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite prezime')" />
+            </div>
+
+            <div class="form-group">
+                <label for="lozinka">Lozinka:</label>
+                <input type="password"  placeholder="Lozinka"  class="form-control" name="lozinka"
+                       oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Promenite lozinku')" />
+            </div>
+
+            <div class="form-group">
+                <label for="datumRodjenja">Datum rodjenja:</label>
+                <input type="date" class="form-control" value="@student.DatumRodjenja" min="@donjaGranica" max="@gornjaGrainica" name="datumRodjenja" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" required placeholder="Email" value="@student.Email" class="form-control" name="email"
+                       oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite email')" />
+            </div>
+
+
+
+
+
+
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Azuriraj" />
+
+                <a href="~/Home/DashBoard" class="btn btn-primary">Otkazi</a>
+            </div>
+
+
+
+        </form>
+    </div>
+</body>
+</html>

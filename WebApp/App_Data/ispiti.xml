@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlIspiti xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Ispiti>
+    <Ispit>
+      <Profesor>profesor1</Profesor>
+      <IdIspita>MISS+januarski</IdIspita>
+      <Predmet>MISS</Predmet>
+      <VremeOdrzavanja>2023-06-05T11:23:00</VremeOdrzavanja>
+      <NazivUcionice>AMS 1</NazivUcionice>
+      <NazivIspitnogRoka>januarski</NazivIspitnogRoka>
+    </Ispit>
+    <Ispit>
+      <Profesor>profesor1</Profesor>
+      <IdIspita>MISS+julski</IdIspita>
+      <Predmet>MISS</Predmet>
+      <VremeOdrzavanja>2023-07-06T12:18:00</VremeOdrzavanja>
+      <NazivUcionice>AMF1</NazivUcionice>
+      <NazivIspitnogRoka>julski</NazivIspitnogRoka>
+    </Ispit>
+    <Ispit>
+      <Profesor>profesor1</Profesor>
+      <IdIspita>BAZE+julski</IdIspita>
+      <Predmet>BAZE</Predmet>
+      <VremeOdrzavanja>2023-07-05T12:19:00</VremeOdrzavanja>
+      <NazivUcionice>AMF2</NazivUcionice>
+      <NazivIspitnogRoka>julski</NazivIspitnogRoka>
+    </Ispit>
+    <Ispit>
+      <Profesor>profesor1</Profesor>
+      <IdIspita>MISS+junski</IdIspita>
+      <Predmet>MISS</Predmet>
+      <VremeOdrzavanja>2023-06-04T12:26:00</VremeOdrzavanja>
+      <NazivUcionice>AMS 1</NazivUcionice>
+      <NazivIspitnogRoka>junski</NazivIspitnogRoka>
+    </Ispit>
+    <Ispit>
+      <Profesor>profesor1</Profesor>
+      <IdIspita>BAZE+junski</IdIspita>
+      <Predmet>BAZE</Predmet>
+      <VremeOdrzavanja>2023-06-07T12:27:00</VremeOdrzavanja>
+      <NazivUcionice>AMF2</NazivUcionice>
+      <NazivIspitnogRoka>junski</NazivIspitnogRoka>
+    </Ispit>
+  </Ispiti>
+</XmlIspiti>

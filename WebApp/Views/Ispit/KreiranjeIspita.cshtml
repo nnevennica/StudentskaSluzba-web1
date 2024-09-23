@@ -1,0 +1,113 @@
+﻿@using WebApp.Models
+
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+    string gornjaGrainica = DateTime.Now.AddDays(20).ToString("yyyy-MM-ddThh:mm");
+    string donjaGranica = DateTime.Now.AddDays(3).ToString("yyyy-MM-ddThh:mm");
+
+    Profesor profesor = (HttpContext.Current.Application["Profesori"] as List<Profesor>).Find(x => x.KorisnickoIme == korisnik.KorisnickoIme);
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <a href="~/Ispit/PregledIspitaProfesor" class="navbar-brand">Pregled ispita</a>
+                <a href="~/Ispit/KreiranjeIspita" class="navbar-brand">Kreiraj ispit</a>
+                <a href="~/Ispit/OcenjivanjeIspita" class="navbar-brand">Oceni ispit</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+
+    
+
+    <div class="col-lg-offset-5">
+        @{
+            if (ViewBag.Message != "")
+            {
+                <h7>@ViewBag.Message</h7>
+                <br />
+            }
+        }
+
+        <form action="/Ispit/KreiranjeIspita" method="post">
+
+
+            <div class="form-group">
+                <label for="nazivIspitnogRoka">Naziv roka:</label>
+                @{
+                    <select name="nazivIspitnogRoka" class="form-control">
+                        <option value="@NazivRoka.januarski">Januarski</option>
+                        <option value="@NazivRoka.februarski">Februarski</option>
+                        <option value="@NazivRoka.aprilski">Aprilski</option>
+                        <option value="@NazivRoka.junski">junski</option>
+                        <option value="@NazivRoka.julski">julski</option>
+                        <option value="@NazivRoka.avgustovski">Avgustovski</option>
+                        <option value="@NazivRoka.septembarski">Septembarski</option>
+                        <option value="@NazivRoka.oktobarski">Oktobarski</option>
+                    </select>
+                }
+            </div>
+            <div class="form-group">
+                <label for="predmet">Predmet:</label>
+                @{
+                    <select name="predmet" class="form-control">
+                        @{
+                            foreach (var str in profesor.Predmeti)
+                            {
+                                <option value="@str">@str</option>
+                            }
+                        }
+                    </select>
+                }
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="vremeIspita">Vreme odrzavanja:</label>
+                <input type="datetime-local" required class="form-control" min="@donjaGranica" max="@gornjaGrainica" name="vremeIspita" oninvalid="this.setCustomValidity('Unesite vreme odrzavanja ispita')" oninput="this.setCustomValidity('')" />
+            </div>
+
+            <div class="form-group">
+                <label for="nazivUcionice">Naziv ucionice:</label>
+                <input type="text" class="form-control" name="nazivUcionice" required placeholder="Naziv ucionice"
+                       oninvalid="this.setCustomValidity('Unesite naziv ucionice')" oninput="this.setCustomValidity('')" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Kreiraj" />
+
+                <a href="~/Home/Index" class="btn btn-primary">Otkazi</a>
+            </div>
+
+
+
+        </form>
+    </div>
+
+
+</body>
+</html>

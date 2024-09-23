@@ -1,0 +1,116 @@
+﻿@using WebApp.Models
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+    string gornjaGrainica = DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd");
+    string donjaGranica = DateTime.Now.AddYears(-100).ToString("yyyy-MM-dd");
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <a href="~/Administrator/KreirajStudenta" class="navbar-brand">Kreiraj studenta</a>
+                <a href="~/Administrator/PregledStudenata" class="navbar-brand">Pregledaj studente</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-offset-5">
+        @{
+            if (ViewBag.Message != "")
+            {
+                <h2>@ViewBag.Message</h2>
+            }
+        }
+        <br />
+        <br />
+    <form action="/Administrator/KreirajStudenta" method="post">
+
+
+        <div class="form-group">
+            <label for="korisnickoIme">Korisnicko ime:</label>
+            <input type="text" required placeholder="Korisnicko ime" class="form-control" name="korisnickoIme"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite korisnicko ime')" />
+        </div>
+
+        <div class="form-group">
+            <label for="oznakaSmera">Oznaka smera:</label>
+            <input type="text" required placeholder="Oznaka smera" class="form-control" name="oznakaSmera"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite oznaku smera')" />
+        </div>
+        <div class="form-group">
+            <label for="brojIndexa">Broj Indexa:</label>
+            <input type="number" min="1" required placeholder="Broj indexa" class="form-control" name="brojIndexa"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite broj indexa')" />
+        </div>
+        <div class="form-group">
+            <label for="godinaUpisa">Godina upisa:</label>
+            <input type="number" min="2010" required placeholder="Godina upisa" class="form-control" name="godinaUpisa"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite godinu upisa')" />
+        </div>
+
+        <div class="form-group">
+            <label for="ime">Ime:</label>
+            <input type="text" required placeholder="Ime" class="form-control" name="ime"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite Ime')" />
+        </div>
+
+        <div class="form-group">
+            <label for="prezime">Prezime:</label>
+            <input type="text" required placeholder="Prezime" class="form-control" name="prezime"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite prezime')" />
+        </div>
+
+        <div class="form-group">
+            <label for="lozinka">Lozinka:</label>
+            <input type="password" required placeholder="Lozinka" class="form-control" name="lozinka"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite lozinku')" />
+        </div>
+
+        <div class="form-group">
+            <label for="datumRodjenja">Datum rodjenja:</label>
+            <input type="date" class="form-control" required min="@donjaGranica" max="@gornjaGrainica" name="datumRodjenja" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" required placeholder="Email" class="form-control" name="email"
+                   oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite email')" />
+        </div>
+
+
+
+
+
+
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Kreiraj" />
+
+            <a href="~/Home/DashBoard" class="btn btn-primary">Otkazi</a>
+        </div>
+
+
+
+    </form>
+    </div>
+</body>
+</html>

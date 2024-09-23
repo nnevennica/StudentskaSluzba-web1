@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlProfesori xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profesori>
+    <Profesor>
+      <KorisnickoIme>profesor1</KorisnickoIme>
+      <Lozinka>1234</Lozinka>
+      <Ime>Marko</Ime>
+      <Prezime>Markovic</Prezime>
+      <DatumRodjenja>08-08-1975</DatumRodjenja>
+      <Uloga>Profesor</Uloga>
+      <Email>marko.markovic@uns.ac.rs</Email>
+      <Predmeti>
+        <string>MISS</string>
+        <string>BAZE</string>
+      </Predmeti>
+    </Profesor>
+    <Profesor>
+      <KorisnickoIme>profesor2</KorisnickoIme>
+      <Lozinka>1234</Lozinka>
+      <Ime>Ivana</Ime>
+      <Prezime>Ivanovic</Prezime>
+      <DatumRodjenja>07-07-1964</DatumRodjenja>
+      <Uloga>Profesor</Uloga>
+      <Email>ivana.ivanovic@uns.ac.rs</Email>
+      <Predmeti>
+        <string>WEB1</string>
+        <string>WEB2</string>
+      </Predmeti>
+    </Profesor>
+  </Profesori>
+</XmlProfesori>

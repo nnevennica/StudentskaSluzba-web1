@@ -1,0 +1,82 @@
+﻿@using WebApp.Models
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+    List<RezultatIspita> ispiti = HttpContext.Current.Application["IspitZaOceniti"] as List<RezultatIspita>;
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <a href="~/Ispit/PregledIspitaProfesor" class="navbar-brand">Pregled ispita</a>
+                <a href="~/Ispit/KreiranjeIspita" class="navbar-brand">Kreiraj ispit</a>
+                <a href="~/Ispit/OcenjivanjeIspita" class="navbar-brand">Oceni ispit</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    @{
+        if (ViewBag.Message != null)
+        {
+            <h2>@ViewBag.Message</h2>
+        }
+    }
+
+    <table class="table table-striped table-primary">
+        <tr>
+            <th>Naziv predmeta</th>
+            <th>Vreme odrzavanja</th>
+            <th>Ispitni rok</th>
+            <th>Student</th>
+            <th>Ocena</th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var ispit in ispiti)
+            {
+                <tr>
+                    <td>@ispit.Ispit.Predmet</td>
+                    <td>@ispit.Ispit.VremeOdrzavanja</td>
+                    <td>@ispit.Ispit.NazivIspitnogRoka</td>
+                    <td>@ispit.Student.Ime @ispit.Student.Prezime @ispit.Student.BrIndex </td>
+
+                    <td>
+                        <form action="/Ispit/OcenjivanjeIspita" method="post">
+                            <input type="number" min="5" max="10" name="ocena" required value="@ispit.IdRez" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Unesite ocenu')" />
+                            <input type="hidden" name="idRez" value="@ispit.IdRez" />
+                            <input type="submit" class="btn btn-primary" value="Oceni ispit" />
+                        </form>
+
+                    </td>
+
+
+
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+</html>

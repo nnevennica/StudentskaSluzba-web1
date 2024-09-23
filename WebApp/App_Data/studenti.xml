@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlStudenti xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Studenti>
+    <Student>
+      <KorisnickoIme>student1</KorisnickoIme>
+      <Lozinka>1234</Lozinka>
+      <Ime>Janko</Ime>
+      <Prezime>Jankovic</Prezime>
+      <DatumRodjenja>2002-08-08</DatumRodjenja>
+      <Uloga>Student</Uloga>
+      <BrIndex>PR1/2022</BrIndex>
+      <Email>janko.jankovic@uns.ac.rs</Email>
+    </Student>
+    <Student>
+      <KorisnickoIme>student2</KorisnickoIme>
+      <Lozinka>1234</Lozinka>
+      <Ime>Nikolina</Ime>
+      <Prezime>Nikolic</Prezime>
+      <DatumRodjenja>2005-06-16</DatumRodjenja>
+      <Uloga>Student</Uloga>
+      <BrIndex>PR2/2022</BrIndex>
+      <Email>nikolic@uns.ac.rs</Email>
+    </Student>
+  </Studenti>
+</XmlStudenti>

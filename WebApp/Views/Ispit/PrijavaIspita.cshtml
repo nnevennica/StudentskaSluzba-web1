@@ -1,0 +1,83 @@
+﻿@using WebApp.Models
+@{
+
+    Korisnik korisnik = (Korisnik)Session["ulogovanKorisnik"];
+    List<Ispit> ispiti = HttpContext.Current.Application["IspitiZaPrijavu"] as List<Ispit>;
+}
+
+
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+
+                <a href="~/Ispit/PregledIspitaStudent" class="navbar-brand">Pregled ispita</a>
+                <a href="~/Ispit/PrijavaIspita" class="navbar-brand">Prijava ispita</a>
+                <a href="~/Home/LogOut" class="navbar-brand">Log out</a>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    @{
+        if (ViewBag.Message != null)
+        {
+            <h2>@ViewBag.Message</h2>
+            <br />
+        }
+    }
+
+    <table class="table table-striped table-primary">
+        <tr>
+            <th>Naziv predmeta</th>
+            <th>Profesor</th>
+            <th>Vreme odrzavanja</th>
+            <th>Ispitni rok</th>
+            <th>Ucionica</th>
+            <th></th>
+        </tr>
+        @{
+            foreach (var ispit in ispiti)
+            {
+                <tr>
+                    <td>@ispit.Predmet</td>
+                    <td>@ispit.Profesor</td>
+                    <td>@ispit.VremeOdrzavanja</td>
+                    <td>@ispit.NazivIspitnogRoka </td>
+                    <td>@ispit.NazivUcionice</td>
+
+                    <td>
+                        <form action="/Ispit/PrijaviIspit" method="post">
+                            <input type="hidden" name="IdIspita" value="@ispit.IdIspita" />
+                            <input type="submit" class="btn btn-primary" value="Prijavi ispit" />
+                        </form>
+
+                    </td>
+
+                    
+
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+</html>
